@@ -1,0 +1,4 @@
+pyarrow
+polars
+xlwings
+pandas
