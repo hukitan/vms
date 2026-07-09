@@ -1,0 +1,55 @@
+name: Bump Version
+
+on:
+  push:
+    branches:
+      - main  # Se ejecutará cada vez que subas cambios a main
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    # Evitamos bucles infinitos causados por el propio commit del robot
+    if: "!contains(github.event.head_commit.message, 'bump version')"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-python: '3.10'
+
+      - name: Install dependencies
+        run: pip install toml
+
+      - name: Bump patch version in pyproject.toml
+        shell: python
+        run: |
+          import toml
+          import os
+
+          config = toml.load("pyproject.toml")
+          current_version = config["project"]["version"]
+
+          # Separar la versión por puntos (ej: "0.1.2" -> [0, 1, 2])
+          parts = list(map(int, current_version.split(".")))
+          parts[2] += 1  # Subir el parche (0.0.1)
+
+          new_version = ".".join(map(str, parts))
+          config["project"]["version"] = new_version
+
+          with open("pyproject.toml", "w") as f:
+              toml.dump(config, f)
+
+          print(f"Versión actualizada de {current_version} a {new_version}")
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add pyproject.toml
+          git commit -m "chore: bump version to $(python -c 'import toml; print(toml.load("pyproject.toml")["project"]["version"])') [skip ci]"
+          git push
