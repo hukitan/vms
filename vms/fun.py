@@ -216,7 +216,7 @@ def notificar_sistema(
     # --- Configuración de Sonidos ---
     if exito:
             winsound.Beep(2000, 300)  # Un pitido agudo corto
-        else:
-            # Tres pitidos graves consecutivos
-            for _ in range(3):
-                winsound.Beep(600, 250)
+    else:
+        # Tres pitidos graves consecutivos
+        for _ in range(3):
+            winsound.Beep(600, 250)
