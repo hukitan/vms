@@ -199,17 +199,24 @@ def notificar_sistema(
     mensaje = (
         mensaje
         if mensaje is not None
-        else "El script finalizó su ejecución."
-        if exito
-        else "El script falló antes de terminar."
+        else (
+            "El script finalizó su ejecución."
+            if exito
+            else "El script falló antes de terminar."
+        )
     )
 
     notification.notify(
         title=titulo,
         message=mensaje,
         app_name="Script de Python",
-        timeout=40,  # La notificación desaparece en 10 segundos
+        timeout=40,
     )
-    frecuencia = 1000
-    duracion = 700  # 1 segundo
-    winsound.Beep(frecuencia, duracion)
+
+    # --- Configuración de Sonidos ---
+    if exito:
+            winsound.Beep(2000, 300)  # Un pitido agudo corto
+        else:
+            # Tres pitidos graves consecutivos
+            for _ in range(3):
+                winsound.Beep(600, 250)
