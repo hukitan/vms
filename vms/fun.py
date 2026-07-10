@@ -184,7 +184,7 @@ def leer_csv_seguro(path):
     for enc in ["utf-8-sig", "utf-8", "latin1"]:
         try:
             return pd.read_csv(
-                path, encoding=enc, low_memory=False, on_bad_lines="skip"|
+                path, encoding=enc, low_memory=False, on_bad_lines="skip"
             )
         except UnicodeDecodeError:
             continue
