@@ -184,7 +184,7 @@ def leer_csv_seguro(path):
     for enc in ["utf-8-sig", "utf-8", "latin1"]:
         try:
             return pd.read_csv(
-                path, encoding=enc, low_memory=False, on_bad_lines="skip"
+                path, encoding=enc, low_memory=False, on_bad_lines="skip"|
             )
         except UnicodeDecodeError:
             continue
@@ -215,8 +215,8 @@ def notificar_sistema(
 
     # --- Configuración de Sonidos ---
     if exito:
-            winsound.Beep(2000, 300)  # Un pitido agudo corto
+            winsound.Beep(1700, 600)  # Un pitido agudo corto
     else:
         # Tres pitidos graves consecutivos
-        for _ in range(3):
+        for _ in range(4):
             winsound.Beep(600, 250)

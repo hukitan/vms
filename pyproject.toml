@@ -5,5 +5,5 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "vms"
 version = "0.1.8"
-description = "Mi paquete personalizado de funciones"
+description = "funciones cool que uso en el dia a dia y esas cosas"
 dependencies = [ "pyarrow", "polars", "xlwings", "pandas", "plyer",]
