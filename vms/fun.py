@@ -220,3 +220,18 @@ def notificar_sistema(
         # Tres pitidos graves consecutivos
         for _ in range(4):
             winsound.Beep(600, 250)
+
+
+def es_script_puro():
+    # Comprueba si se está ejecutando desde un archivo .py estándar
+    # y no a través de un kernel de Jupyter (JupyterLab, VS Code Notebook, etc.)
+    is_ipython = False
+    try:
+        from IPython import get_ipython
+
+        if get_ipython() is not None:
+            is_ipython = True
+    except ImportError:
+        pass
+
+    return not is_ipython and __name__ == "__main__"

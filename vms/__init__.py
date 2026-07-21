@@ -8,4 +8,5 @@ from .fun import (
     scan_all_as_utf8,
     leer_csv_seguro,
     notificar_sistema,
+    es_script_puro,
 )
