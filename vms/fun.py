@@ -223,15 +223,19 @@ def notificar_sistema(
 
 
 def es_script_puro():
-    # Comprueba si se está ejecutando desde un archivo .py estándar
-    # y no a través de un kernel de Jupyter (JupyterLab, VS Code Notebook, etc.)
-    is_ipython = False
+    # 1. Si existe la variable de entorno que crea JupyterLab/Notebooks en el proceso padre
+    if "JPY_PARENT_PID" in os.environ:
+        return False
+
+    # 2. Verificar si estamos corriendo bajo un ipykernel (Jupyter / VS Code celdas)
+    is_ipykernel = "ipykernel" in sys.modules
     try:
         from IPython import get_ipython
 
-        if get_ipython() is not None:
-            is_ipython = True
+        ip = get_ipython()
+        if ip is not None and hasattr(ip, "kernel"):
+            is_ipykernel = True
     except ImportError:
         pass
 
-    return not is_ipython and __name__ == "__main__"
+    return not is_ipykernel
