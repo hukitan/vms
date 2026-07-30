@@ -239,3 +239,28 @@ def es_script_puro():
         pass
 
     return not is_ipykernel
+
+def leer_csv_seguro2(ruta, encoding="utf8", columns=None):
+    """
+    Lee CSV forzando TODAS las columnas como string (infer_schema_length=0).
+    Evita que Polars infiera tipo con una muestra chica y luego tire filas
+    completas cuando una fila más adelante en el archivo no encaja con ese
+    tipo (comportamiento silencioso de ignore_errors=True). Cero pérdida de
+    filas por esta causa. Casteo numérico se hace después, explícito.
+    """
+    kwargs = dict(infer_schema_length=0, encoding=encoding)
+    if columns is not None:
+        kwargs["columns"] = columns
+    return pl.read_csv(ruta, **kwargs)
+
+
+def normalizar_llave_pl(df, col):
+    """Estandariza una columna llave (Polars): string, sin espacios, mayúsculas."""
+    return df.with_columns(
+        pl.col(col).cast(pl.String).str.strip_chars().str.to_uppercase().alias(col)
+    )
+
+
+def normalizar_llave_pd(serie):
+    """Estandariza una columna llave (pandas): string, sin espacios, mayúsculas."""
+    return serie.astype(str).str.strip().str.upper()
