@@ -3,7 +3,7 @@ requires = [ "setuptools", "wheel",]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "vms"
+name = "vems_utils"
 version = "0.1.17"
 description = "funciones cool que uso en el dia a dia y esas cosas"
 dependencies = [ "pyarrow", "polars", "xlwings", "pandas", "plyer",]
