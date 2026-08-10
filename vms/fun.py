@@ -136,7 +136,7 @@ def obtener_logger(nombre_script):
             desktop_dir = os.path.join(user_profile, "Desktop")
 
         # Creamos la subcarpeta dentro del escritorio de OneDrive que encontró Windows
-        log_dir = os.path.join(desktop_dir, "Logs_vms")
+        log_dir = os.path.join(desktop_dir, "Logs_vems")
         os.makedirs(log_dir, exist_ok=True)
         log_path = os.path.join(log_dir, "Logs_iswasito.txt")
 

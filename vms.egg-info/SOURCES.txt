@@ -1,9 +1,9 @@
 pyproject.toml
-vms/Add_cobranza.py
-vms/__init__.py
-vms/fun.py
-vms.egg-info/PKG-INFO
-vms.egg-info/SOURCES.txt
-vms.egg-info/dependency_links.txt
-vms.egg-info/requires.txt
-vms.egg-info/top_level.txt
+vems/Add_cobranza.py
+vems/__init__.py
+vems/fun.py
+vems.egg-info/PKG-INFO
+vems.egg-info/SOURCES.txt
+vems.egg-info/dependency_links.txt
+vems.egg-info/requires.txt
+vems.egg-info/top_level.txt
