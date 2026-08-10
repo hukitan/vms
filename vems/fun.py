@@ -261,6 +261,7 @@ def normalizar_llave_pl(df, col):
     )
 
 
+
 def normalizar_llave_pd(serie):
     """Estandariza una columna llave (pandas): string, sin espacios, mayúsculas."""
     return serie.astype(str).str.strip().str.upper()
