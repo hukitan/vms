@@ -9,7 +9,7 @@ from .fun import (
     leer_csv_seguro,
     notificar_sistema,
     es_script_puro,
-    leer_csv_seguro2,
+    leer_csv_seguro2tx,
     normalizar_llave_pl,
     normalizar_llave_pd
 

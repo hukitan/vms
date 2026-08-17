@@ -240,7 +240,7 @@ def es_script_puro():
 
     return not is_ipykernel
 
-def leer_csv_seguro2(ruta, encoding="utf8", columns=None):
+def leer_csv_seguro2tx(ruta, encoding="utf8", columns=None):
     """
     Lee CSV forzando TODAS las columnas como string (infer_schema_length=0).
     Evita que Polars infiera tipo con una muestra chica y luego tire filas
